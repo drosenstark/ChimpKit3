@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Set your API Key here
-	[[ChimpKit sharedKit] setApiKey:@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-XXX"];
+	[[ChimpKit sharedKit] setApiKey:@"e70a7611268e5f24bd8afc616a668f77-us3"];
 	
     return YES;
 }

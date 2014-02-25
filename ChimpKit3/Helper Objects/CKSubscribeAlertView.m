@@ -111,5 +111,9 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
     }
 }
 
+-(void)dealloc {
+
+}
+
 
 @end

@@ -34,7 +34,7 @@
 - (IBAction)subscribeButtonTapped:(id)sender {
 	CKSubscribeAlertView *alert = [[CKSubscribeAlertView alloc] initWithTitle:@"Subscribe"
                                                                   message:@"Enter your email address to subscribe to our mailing list."
-                                                                   listId:@"<YOUR LIST ID>"
+                                                                   listId:@"6424cd8562"
                                                         cancelButtonTitle:@"Cancel"
                                                      subscribeButtonTitle:@"Subscribe"];
 	
