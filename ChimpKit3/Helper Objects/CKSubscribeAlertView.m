@@ -84,7 +84,6 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
     [errorAlertView show];
 }
 
-
 #pragma mark - <UIAlertViewDelegate> Methods
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -106,14 +105,15 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
                            
                            if (![parsedResponse isKindOfClass:[NSDictionary class]] || ![parsedResponse[@"email"] isKindOfClass:[NSString class]] || error) {
 							   [self showSubscribeError];
+                           } else if (self.successBlock) {
+                               self.successBlock();
                            }
 					   }];
+    } else {
+        self.cancelBlock();
     }
 }
 
--(void)dealloc {
-
-}
 
 
 @end

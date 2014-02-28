@@ -10,6 +10,9 @@
 
 @interface CKSubscribeAlertView : UIAlertView <UITextFieldDelegate, UIAlertViewDelegate> 
 
+@property  (nonatomic, strong) dispatch_block_t successBlock;
+@property  (nonatomic, strong) dispatch_block_t cancelBlock;
+
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
              listId:(NSString *)aListId
