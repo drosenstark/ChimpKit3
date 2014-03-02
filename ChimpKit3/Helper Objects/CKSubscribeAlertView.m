@@ -28,7 +28,8 @@
              listId:(NSString *)aListId
 cancelButtonTitle:(NSString *)cancelButtonTitle
 subscribeButtonTitle:(NSString *)subscribeButtonTitle
-        doubleOptIn:(BOOL)doubleOptIn {
+        doubleOptIn:(BOOL)doubleOptIn
+        email:(NSString*)email {
 
 	self = [super initWithTitle:title
                         message:message
@@ -46,10 +47,13 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
 		
 		// Common text field properties
 		textField.placeholder = @"Email Address";
+        if (email) {
+            textField.text = email;
+        }
 		textField.keyboardType = UIKeyboardTypeEmailAddress;
 		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        
+
         self.listId = aListId;
         
         self.doubleOptIn = doubleOptIn;
@@ -69,7 +73,7 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
                         listId:aListId
              cancelButtonTitle:cancelButtonTitle
           subscribeButtonTitle:subscribeButtonTitle
-                   doubleOptIn:NO];
+                   doubleOptIn:NO email:nil];
 }
 
 
@@ -106,7 +110,8 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
                            if (![parsedResponse isKindOfClass:[NSDictionary class]] || ![parsedResponse[@"email"] isKindOfClass:[NSString class]] || error) {
 							   [self showSubscribeError];
                            } else if (self.successBlock) {
-                               self.successBlock();
+                               NSString *email = parsedResponse[@"email"];
+                               self.successBlock(email);
                            }
 					   }];
     } else {

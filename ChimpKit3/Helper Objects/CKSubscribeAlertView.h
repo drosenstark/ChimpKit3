@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^block_with_one_param_for_ck)(id);
+
 @interface CKSubscribeAlertView : UIAlertView <UITextFieldDelegate, UIAlertViewDelegate> 
 
-@property  (nonatomic, strong) dispatch_block_t successBlock;
+
+@property  (nonatomic, strong) block_with_one_param_for_ck successBlock;
 @property  (nonatomic, strong) dispatch_block_t cancelBlock;
 
 - (id)initWithTitle:(NSString *)title
@@ -24,6 +27,9 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle;
              listId:(NSString *)aListId
   cancelButtonTitle:(NSString *)cancelButtonTitle
 subscribeButtonTitle:(NSString *)subscribeButtonTitle
-        doubleOptIn:(BOOL)doubleOptIn;
+        doubleOptIn:(BOOL)doubleOptIn
+              email:(NSString*) email;
+
+
 
 @end
