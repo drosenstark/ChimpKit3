@@ -8,6 +8,7 @@
 
 #import "CKSubscribeAlertView.h"
 #import "ChimpKit.h"
+#import "NSString+Regex.h"
 
 
 @interface CKSubscribeAlertView()
@@ -93,6 +94,12 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) { // Subscribe pressed
 		UITextField *textField = [self textFieldAtIndex:0];
+
+        if (![textField.text isValidEmail]) {
+            self.reshowDueToInvalidEmail(textField.text);
+            return;
+        }
+
 		
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"id"] = self.listId;
@@ -106,11 +113,11 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
 						   NSLog(@"Response: %@", request.responseString);
 						   
                            id parsedResponse = [NSJSONSerialization JSONObjectWithData:request.responseData options:0 error:nil];
-                           
-                           if (![parsedResponse isKindOfClass:[NSDictionary class]] || ![parsedResponse[@"email"] isKindOfClass:[NSString class]] || error) {
-							   [self showSubscribeError];
+                            NSString *email = parsedResponse[@"email"];
+
+                           if (![parsedResponse isKindOfClass:[NSDictionary class]] || ![email isKindOfClass:[NSString class]] || error) {
+                               self.reshowDueToInvalidEmail(email);
                            } else if (self.successBlock) {
-                               NSString *email = parsedResponse[@"email"];
                                self.successBlock(email);
                            }
 					   }];
@@ -118,6 +125,9 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
         self.cancelBlock();
     }
 }
+
+
+
 
 
 

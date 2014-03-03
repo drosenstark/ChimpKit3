@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DRUtil.h"
 
-typedef void (^block_with_one_param_for_ck)(id);
-
-@interface CKSubscribeAlertView : UIAlertView <UITextFieldDelegate, UIAlertViewDelegate> 
+@interface CKSubscribeAlertView : UIAlertView <UITextFieldDelegate, UIAlertViewDelegate>
 
 
-@property  (nonatomic, strong) block_with_one_param_for_ck successBlock;
-@property  (nonatomic, strong) dispatch_block_t cancelBlock;
+@property  (nonatomic, strong) block_with_one_param successBlock;
+@property  (nonatomic, strong) simplest_block cancelBlock;
+@property  (nonatomic, strong) block_with_one_param reshowDueToInvalidEmail;
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
