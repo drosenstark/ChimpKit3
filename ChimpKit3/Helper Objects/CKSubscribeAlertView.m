@@ -128,7 +128,9 @@ subscribeButtonTitle:(NSString *)subscribeButtonTitle
 
 
 
+- (void) dealloc {
+    DEBUG_DEALLOC();
 
-
+}
 
 @end
