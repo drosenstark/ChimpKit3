@@ -8,7 +8,7 @@
 
 #import "CKSubscribeAlertView.h"
 #import "ChimpKit.h"
-#import "NSString+Regex.h"
+#import "NSString+Validation.h"
 
 
 @interface CKSubscribeAlertView()
